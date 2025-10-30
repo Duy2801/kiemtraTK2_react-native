@@ -5,6 +5,7 @@ export default function Layout() {
     <Stack screenOptions={{ headerShown: true }}>
       <Stack.Screen name="index" options={{ title: 'Danh mục sản phẩm' }} />
       <Stack.Screen name="products/[categoryId]" options={{ title: 'Sản phẩm' }} />
+      <Stack.Screen name="products/[productId]" options={{ title: 'Chi tiết sản phẩm' }} />
     </Stack>
   );
 }
