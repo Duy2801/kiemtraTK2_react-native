@@ -2,7 +2,12 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { View, Text, FlatList, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { ProductRepo, Product } from '../../src/db/product.repo';
+import { syncBidirectional } from '../../src/db/product.sync';
 
+const handleSync = async () => {
+  const result = await syncBidirectional();
+  alert(result.message);
+};
 export default function ProductScreen() {
   const { categoryId } = useLocalSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
@@ -168,6 +173,9 @@ export default function ProductScreen() {
       >
         <Text style={{ color: 'white', fontWeight: 'bold' }}>+ Thêm sản phẩm</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={handleSync} style={{ backgroundColor: '#007AFF', padding: 10, borderRadius: 8 }}>
+  <Text style={{ color: '#fff', textAlign: 'center' }}>🔄 Đồng bộ</Text>
+</TouchableOpacity>
 
       {/* Danh sách sản phẩm */}
       <FlatList

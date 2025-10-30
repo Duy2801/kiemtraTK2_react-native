@@ -1,8 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { ProductRepo ,Product} from '../../src/db/product.repo';
-
+import { ProductRepo, Product } from '../../src/db/product.repo';
 
 export default function ProductDetailScreen() {
   const { productId } = useLocalSearchParams();
@@ -42,12 +41,14 @@ export default function ProductDetailScreen() {
         <Text style={{ color: '#fff', fontSize: 18 }}>←</Text>
       </TouchableOpacity>
 
-      {/* Ảnh sản phẩm */}
-      <Image
-        source={{ uri: product.image_uri }}
-        style={{ width: '100%', height: 280 }}
-        resizeMode="cover"
-      />
+      {/* Ảnh sản phẩm (chỉ hiển thị nếu có) */}
+      {product.image_uri ? (
+        <Image
+          source={{ uri: product.image_uri }}
+          style={{ width: '100%', height: 280 }}
+          resizeMode="cover"
+        />
+      ) : null}
 
       <View style={{ padding: 20 }}>
         <Text style={{ fontSize: 22, fontWeight: 'bold', marginBottom: 10 }}>
